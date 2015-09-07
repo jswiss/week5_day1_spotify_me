@@ -29,6 +29,11 @@ $(document).ready(function() {
       
       var music = response[searchType+'s']['items'];
 
+      if ($('#results') === 'track')
+        $.each(tracks, function(index, item) {
+          results.append("<audio src=" + tracks[index]['preview_url'] + " type='mp3'></audio>")
+        })
+      else
       $.each(music, function(index, item) {
         console.log(music[index]['name']);
         results.append("<p>" + music[index]['name'] + "</p>")
