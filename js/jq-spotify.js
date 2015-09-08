@@ -28,10 +28,12 @@ $(document).ready(function() {
     $.get('https://api.spotify.com/v1/search?q=' + searchInput + '&type=' + searchType, function(response) {
       
       var music = response[searchType+'s']['items'];
+      var track = response['tracks']['items'];
 
-      if ($('#results') === 'track')
-        $.each(tracks, function(index, item) {
-          results.append("<audio src=" + tracks[index]['preview_url'] + " type='mp3'></audio>")
+      if (searchType === 'track')
+        $.each(track, function(index, item) {
+          results.append("<div class='track'><a href ='"+track[index]['preview_url'] +"'>" + music[index]['name'] + "</a></div>")
+          // results.append("<audio src=" + track[index]['preview_url'] +" type='mp3'></audio>")
         })
       else
       $.each(music, function(index, item) {
